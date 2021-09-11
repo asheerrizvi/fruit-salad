@@ -1,4 +1,3 @@
-import DOMPurify from "dompurify";
 import productStyles from "../css/products.module.css";
 
 function generateProduct(product) {
@@ -11,10 +10,14 @@ function generateProduct(product) {
 }
 
 function showAllProducts(products) {
-  console.log(products);
+  const parser = new DOMParser();
   const productsList = document.getElementById("products-list");
   products.forEach((product) => {
-    productsList.innerHTML += DOMPurify.sanitize(generateProduct(product));
+    const productCard = generateProduct(product);
+    const productCardElement = parser.parseFromString(productCard, "text/html").documentElement;
+
+    productsList.append(productCardElement);
+    productCardElement.addEventListener("click", () => console.log("here!"));
   });
 }
 
