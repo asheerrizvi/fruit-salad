@@ -1,0 +1,110 @@
+#app {
+  display: grid;
+  place-items: center;
+  padding: 3rem;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 44px;
+  margin-bottom: 42px;
+  color: #000000;
+  text-align: left;
+}
+
+h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  margin-bottom: 28px;
+  color: #000000;
+  text-align: left;
+}
+
+hr {
+  margin: 40px 0;
+  background-color: #b9b9b9;
+}
+
+.button {
+  height: 48px;
+  width: 140px;
+  font-family: "Mukta", sans-serif;
+  font-size: 18px;
+  color: #797874;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px 0px #00000033;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #eeeeee;
+}
+
+.product {
+  height: 100vh;
+  width: 720px;
+  padding: 0 28px;
+}
+
+.product-header {
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #b9b9b9;
+}
+
+.product-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.average-rating {
+  font-family: "Roboto", sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.product-reviews {
+  width: 100%;
+}
+
+.star {
+  height: 30px;
+  width: 30px;
+}
+
+ul.product-reviews-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 0;
+  list-style: none;
+}
+
+li.product-reviews-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.list-item-stars {
+  margin-right: 28px;
+}
+
+.list-item-rating {
+  margin-right: 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.list-item-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #929292;
+}

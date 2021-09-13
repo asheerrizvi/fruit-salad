@@ -4,17 +4,42 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Karla&family=Rubik:wght@600&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Mukta:wght@500&family=Roboto:wght@400;700&display=swap");
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app">
-      <main id="products-container">
-        <section id="products-list"></section>
-      </main>
-    </div>
+    <main id="app">
+      <section class="product">
+        <header class="product-header">
+          <h1 class="product-name"></h1>
+          <div class="product-info">
+            <span class="average-rating"> 3.8 </span>
+            <article class="add-review">
+              <div class="product-stars"></div>
+              <button class="button" id="add-review-btn">Add review</button>
+            </article>
+          </div>
+        </header>
+        <section class="product-reviews">
+          <h2>Reviews</h2>
+          <ul class="product-reviews-list">
+            <li class="product-reviews-list-item">
+              <div class="list-item-stars">
+                <img src="./src/img/filled-star.svg" alt="Star" class="star">
+                <img src="./src/img/filled-star.svg" alt="Star" class="star">
+                <img src="./src/img/filled-star.svg" alt="Star" class="star">
+                <img src="./src/img/filled-star.svg" alt="Star" class="star">
+                <img src="./src/img/unfilled-star.svg" alt="Star" class="star">
+              </div>
+              <span class="list-item-rating">4,</span>
+              <span class="list-item-text">book was full of fluff</span>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </main>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

@@ -1,14 +1,18 @@
-import supabase from "./src/js/initSupabase";
-import { showAllProducts } from "./src/js/products";
+import supabase from "./src/js/client";
+import { showProductRating } from "./src/js/productRating";
 import "./style.css";
 
+// Fetches an array of all products from the backend.
 async function fetchProducts() {
   // Get the list of all products from the backend.
   let { data: products, error } = await supabase.from("products").select("*");
 
-  // Show a list of all products.
+  // Choose a random product from the products array
+  // and display it's rating.
   if (products) {
-    showAllProducts(products);
+    const randomProduct = products[Math.floor(Math.random() * products.length)];
+    console.log(randomProduct);
+    showProductRating(randomProduct);
   }
 }
 
