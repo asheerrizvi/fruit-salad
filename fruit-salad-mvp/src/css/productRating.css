@@ -7,7 +7,7 @@
 h1 {
   font-family: "Roboto", sans-serif;
   font-size: 44px;
-  margin-bottom: 42px;
+  margin-bottom: 40px;
   color: #000000;
   text-align: left;
 }
@@ -44,7 +44,7 @@ hr {
 
 .product {
   height: 100vh;
-  width: 720px;
+  width: 580px;
   padding: 0 28px;
 }
 
@@ -62,10 +62,18 @@ hr {
 }
 
 .average-rating {
+  margin-right: 24px;
   font-family: "Roboto", sans-serif;
   font-size: 44px;
   font-weight: 400;
   color: #000000;
+}
+
+.add-review {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .product-reviews {
@@ -75,6 +83,8 @@ hr {
 .star {
   height: 30px;
   width: 30px;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 ul.product-reviews-list {
@@ -88,14 +98,16 @@ ul.product-reviews-list {
 li.product-reviews-list-item {
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .list-item-stars {
-  margin-right: 28px;
+  display: flex;
+  margin-right: 20px;
 }
 
 .list-item-rating {
-  margin-right: 6px;
+  margin-right: 12px;
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 700;
@@ -106,5 +118,6 @@ li.product-reviews-list-item {
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 400;
+  text-align: left;
   color: #929292;
 }

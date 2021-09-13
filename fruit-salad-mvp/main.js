@@ -11,7 +11,6 @@ async function fetchProducts() {
   // and display it's rating.
   if (products) {
     const randomProduct = products[Math.floor(Math.random() * products.length)];
-    console.log(randomProduct);
     showProductRating(randomProduct);
   }
 }
