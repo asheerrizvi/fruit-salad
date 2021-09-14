@@ -1,0 +1,16 @@
+{
+  "name": "fruit-salad-mvp",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.5.4"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^1.22.5",
+    "micromodal": "^0.4.6"
+  }
+}

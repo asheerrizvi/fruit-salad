@@ -1,0 +1,123 @@
+#app {
+  display: grid;
+  place-items: center;
+  padding: 3rem;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 44px;
+  margin-bottom: 40px;
+  color: #000000;
+  text-align: left;
+}
+
+h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  margin-bottom: 28px;
+  color: #000000;
+  text-align: left;
+}
+
+hr {
+  margin: 40px 0;
+  background-color: #b9b9b9;
+}
+
+.button.button__normal {
+  height: 48px;
+  width: 140px;
+  font-family: "Mukta", sans-serif;
+  font-size: 18px;
+  color: #797874;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px 0px #00000033;
+  cursor: pointer;
+}
+
+.button.button__normal:hover {
+  background-color: #eeeeee;
+}
+
+.product {
+  height: auto;
+  width: 580px;
+  padding: 0 28px;
+}
+
+.product__header {
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #b9b9b9;
+}
+
+.product__info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product__average-rating {
+  margin-right: 24px;
+  font-family: "Roboto", sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.product__add-new-review {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product__all-reviews {
+  width: 100%;
+}
+
+.star {
+  height: 30px;
+  width: 30px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+ul.product__all-reviews-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 0;
+  list-style: none;
+}
+
+li.product__all-reviews-list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.list-item-stars {
+  display: flex;
+  margin-right: 20px;
+}
+
+.list-item-rating {
+  margin-right: 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.list-item-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: left;
+  color: #929292;
+}
