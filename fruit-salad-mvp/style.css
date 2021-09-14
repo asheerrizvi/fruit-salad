@@ -4,15 +4,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#products-container {
-  padding: 3rem;
-}
-
-#products-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 360px));
-  grid-gap: 12px;
-  justify-content: center;
+  place-items: center;
+  padding: 3rem;
 }

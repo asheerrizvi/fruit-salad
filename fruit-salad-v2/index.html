@@ -2,95 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Mukta:wght@500&family=Roboto:wght@400;700&display=swap");
-    </style>
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fruit Salad 🍎</title>
+    <title>Fruit Salad v2 🍎</title>
   </head>
   <body>
-    <main id="app">
-      <section class="product">
-        <header class="product__header">
-          <h1 class="product__name"></h1>
-          <div class="product__info">
-            <span class="product__average-rating"></span>
-            <article class="product__add-new-review">
-              <div class="product__average-stars"></div>
-              <button class="button button__normal" id="new-review-button">
-                Add review
-              </button>
-            </article>
-          </div>
-        </header>
-        <section class="product__all-reviews">
-          <h2>Reviews</h2>
-          <ul class="product__all-reviews-list"></ul>
-        </section>
-      </section>
-
-      <div class="modal micromodal-slide" id="review-modal" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-          <div
-            class="modal__container"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="review-modal-title"
-          >
-            <header class="modal__header">
-              <h1 id="review-modal-title">What's your rating</h1>
-            </header>
-            <main class="modal__content" id="review-modal-content">
-              <section class="review-modal__section">
-                <span class="review-modal__section-title">Rating</span>
-                <div id="review-modal-stars">
-                  <img
-                    src="./src/img/unfilled-star.svg"
-                    alt="Star"
-                    class="star"
-                  />
-                  <img
-                    src="./src/img/unfilled-star.svg"
-                    alt="Star"
-                    class="star"
-                  />
-                  <img
-                    src="./src/img/unfilled-star.svg"
-                    alt="Star"
-                    class="star"
-                  />
-                  <img
-                    src="./src/img/unfilled-star.svg"
-                    alt="Star"
-                    class="star"
-                  />
-                  <img
-                    src="./src/img/unfilled-star.svg"
-                    alt="Star"
-                    class="star"
-                  />
-                </div>
-              </section>
-              <section class="review-modal__section">
-                <span class="review-modal__section-title">Review</span>
-                <input
-                  type="text"
-                  id="review-modal__input"
-                  placeholder="Start typing..."
-                />
-              </section>
-              <button
-                class="button button__normal"
-                id="review-modal-submit-btn"
-              >
-                Submit Review
-              </button>
-            </main>
-          </div>
-        </div>
-      </div>
-    </main>
-    <script type="module" src="/main.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

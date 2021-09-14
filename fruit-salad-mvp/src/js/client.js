@@ -15,7 +15,7 @@ async function getProducts() {
 async function getReviews(productId) {
   const { data: reviews, error } = await supabase
     .from("reviews")
-    .select("rating, review_text")
+    .select("id, rating, review_text")
     .eq("product_id", productId);
   return reviews;
 }
