@@ -1,5 +1,6 @@
 import supabase from "./src/js/client";
-import { showProductRating } from "./src/js/productRating";
+import { showProductRating } from "./src/js/product";
+import { setupReviewModal } from "./src/js/review";
 import "./style.css";
 
 // Fetches an array of all products from the backend.
@@ -12,6 +13,7 @@ async function fetchProducts() {
   if (products) {
     const randomProduct = products[Math.floor(Math.random() * products.length)];
     showProductRating(randomProduct);
+    setupReviewModal();
   }
 }
 
