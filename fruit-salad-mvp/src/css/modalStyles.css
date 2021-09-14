@@ -41,25 +41,25 @@
   color: rgba(0, 0, 0, 0.8);
 }
 
-.modal__section {
+.review-modal__section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
 }
 
-#modal-rating-stars {
+#review-modal-stars {
   margin-bottom: 40px;
 }
 
-#modal-review-input,
-#modal-review-input::placeholder {
+#review-modal__input,
+#review-modal__input::placeholder {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   color: #929292;
 }
 
-#modal-review-input {
+#review-modal__input {
   width: 100%;
   outline: none;
   margin-bottom: 40px;
@@ -68,11 +68,11 @@
   box-sizing: border-box;
 }
 
-#modal-review-input:focus {
+#review-modal__input:focus {
   outline: none;
 }
 
-.modal__section-title {
+.review-modal__section-title {
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 400;
@@ -80,7 +80,7 @@
   margin-bottom: 40px;
 }
 
-#submit-review-btn {
+#review-modal-submit-btn {
   width: 218px;
 }
 

@@ -7,29 +7,26 @@
       @import url("https://fonts.googleapis.com/css2?family=Mukta:wght@500&family=Roboto:wght@400;700&display=swap");
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Fruit Salad 🍎</title>
   </head>
   <body>
     <main id="app">
       <section class="product">
-        <header class="product-header">
-          <h1 class="product-name"></h1>
-          <div class="product-info">
-            <span class="average-rating"></span>
-            <article class="add-review">
-              <div class="average-rating-stars"></div>
-              <button
-                class="button"
-                id="add-review-btn"
-              >
+        <header class="product__header">
+          <h1 class="product__name"></h1>
+          <div class="product__info">
+            <span class="product__average-rating"></span>
+            <article class="product__add-new-review">
+              <div class="product__average-stars"></div>
+              <button class="button button__normal" id="new-review-button">
                 Add review
               </button>
             </article>
           </div>
         </header>
-        <section class="product-reviews">
+        <section class="product__all-reviews">
           <h2>Reviews</h2>
-          <ul class="product-reviews-list"></ul>
+          <ul class="product__all-reviews-list"></ul>
         </section>
       </section>
 
@@ -45,9 +42,9 @@
               <h1 id="review-modal-title">What's your rating</h1>
             </header>
             <main class="modal__content" id="review-modal-content">
-              <section id="modal-rating" class="modal__section">
-                <span class="modal__section-title">Rating</span>
-                <div id="modal-rating-stars">
+              <section class="review-modal__section">
+                <span class="review-modal__section-title">Rating</span>
+                <div id="review-modal-stars">
                   <img
                     src="./src/img/unfilled-star.svg"
                     alt="Star"
@@ -75,15 +72,18 @@
                   />
                 </div>
               </section>
-              <section id="modal-review" class="modal__section">
-                <span class="modal__section-title">Review</span>
+              <section class="review-modal__section">
+                <span class="review-modal__section-title">Review</span>
                 <input
                   type="text"
-                  id="modal-review-input"
+                  id="review-modal__input"
                   placeholder="Start typing..."
                 />
               </section>
-              <button class="button" id="submit-review-btn">
+              <button
+                class="button button__normal"
+                id="review-modal-submit-btn"
+              >
                 Submit Review
               </button>
             </main>

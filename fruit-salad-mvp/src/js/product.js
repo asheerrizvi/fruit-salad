@@ -21,7 +21,7 @@ function generateProductReviewElement(review) {
   const reviewItemRating = document.createElement("span");
   const reviewItemText = document.createElement("span");
 
-  reviewItem.classList.add("product-reviews-list-item");
+  reviewItem.classList.add("product__all-reviews-list-item");
   reviewItemStars.classList.add("list-item-stars");
   reviewItemRating.classList.add("list-item-rating");
   reviewItemText.classList.add("list-item-text");
@@ -70,14 +70,14 @@ async function showProductRating(product) {
   const roundedAverageProductRating = Math.round(averageProductRating);
 
   const productArticle = document.querySelector(".product");
-  const productName = productArticle.querySelector(".product-name");
-  const productAvgRating = productArticle.querySelector(".average-rating");
+  const productName = productArticle.querySelector(".product__name");
+  const productAvgRating = productArticle.querySelector(".product__average-rating");
   const productAvgRatingStars = productArticle.querySelector(
-    ".average-rating-stars"
+    ".product__average-stars"
   );
-  const addReviewButton = document.getElementById("add-review-btn");
+  const addReviewButton = document.getElementById("new-review-button");
   const productReviewsList = productArticle.querySelector(
-    ".product-reviews-list"
+    ".product__all-reviews-list"
   );
 
   productArticle.id = product.id;

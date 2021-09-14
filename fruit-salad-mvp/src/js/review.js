@@ -14,9 +14,9 @@ function handleModalStarClick(modalRatingStars, index) {
 
 function resetReviewModal() {
   const modalRatingStarsContainer =
-    document.getElementById("modal-rating-stars");
+    document.getElementById("review-modal-stars");
   const modalRatingStars = [...modalRatingStarsContainer.children];
-  const modalReviewInput = document.getElementById("modal-review-input");
+  const modalReviewInput = document.getElementById("review-modal__input");
 
   modalRatingStars.forEach((starEl) => {
     starEl.src = unfilledStarIcon;
@@ -27,14 +27,14 @@ function resetReviewModal() {
 async function handleReviewSubmit() {
   const productArticle = document.querySelector(".product");
   const modalRatingStarsContainer =
-    document.getElementById("modal-rating-stars");
+    document.getElementById("review-modal-stars");
   const rating =
     modalRatingStarsContainer.querySelectorAll(".star-filled").length;
   const review_text = document
-    .getElementById("modal-review-input")
+    .getElementById("review-modal__input")
     .value.trim();
   const productReviewsList = productArticle.querySelector(
-    ".product-reviews-list"
+    ".product__all-reviews-list"
   );
   const product_id = productArticle.id;
 
@@ -47,8 +47,8 @@ async function handleReviewSubmit() {
 
 function setupReviewModal() {
   const modalRatingStarsContainer =
-    document.getElementById("modal-rating-stars");
-  const submitReviewButton = document.getElementById("submit-review-btn");
+    document.getElementById("review-modal-stars");
+  const submitReviewButton = document.getElementById("review-modal-submit-btn");
   const modalRatingStars = [...modalRatingStarsContainer.children];
 
   modalRatingStars.forEach((starEl, index) => {
