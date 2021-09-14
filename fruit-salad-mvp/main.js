@@ -1,7 +1,9 @@
+import MicroModal from "micromodal";
 import supabase from "./src/js/client";
 import { showProductRating } from "./src/js/product";
 import { setupReviewModal } from "./src/js/review";
 import "./style.css";
+MicroModal.init();
 
 // Fetches an array of all products from the backend.
 async function fetchProducts() {

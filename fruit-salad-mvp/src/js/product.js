@@ -5,7 +5,6 @@ import filledStarIcon from "../img/filled-star.svg";
 import unfilledStarIcon from "../img/unfilled-star.svg";
 import supabase from "./client";
 import { resetReviewModal } from "./review";
-MicroModal.init();
 
 function generateStarElement(type) {
   const starImg = document.createElement("img");
@@ -81,6 +80,7 @@ async function showProductRating(product) {
     ".product-reviews-list"
   );
 
+  productArticle.id = product.id;
   productName.textContent = product.product_name;
   productAvgRating.textContent = averageProductRating;
 
@@ -100,4 +100,4 @@ async function showProductRating(product) {
   addReviewButton.addEventListener("click", handleAddReviewBtnClick);
 }
 
-export { showProductRating };
+export { generateProductReviewElement, showProductRating };
