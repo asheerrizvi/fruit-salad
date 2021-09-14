@@ -1,9 +1,35 @@
 import MicroModal from "micromodal";
 import filledStarIcon from "../img/filled-star.svg";
 import unfilledStarIcon from "../img/unfilled-star.svg";
-import supabase from "./client";
-import { generateProductReviewElement } from "./product";
+import { addReview } from "./client";
+import { addReviewToReviews } from "./product";
 
+// Shows the review modal.
+function showReviewModal() {
+  MicroModal.show("review-modal");
+}
+
+// Closes the review modal.
+function closeReviewModal() {
+  resetReviewModal();
+  MicroModal.close("review-modal");
+}
+
+// Resets the review modal to it's initial state
+// by resetting the rating and the review text.
+function resetReviewModal() {
+  const reviewStarsEl = document.getElementById("review-modal-stars");
+  const reviewStars = [...reviewStarsEl.children];
+  const reviewInputEl = document.getElementById("review-modal__input");
+
+  reviewStars.forEach((starEl) => {
+    starEl.src = unfilledStarIcon;
+  });
+  reviewInputEl.value = "";
+}
+
+// Determines the rating which the user is giving
+// for a product when a star in review modal is clicked.
 function handleModalStarClick(modalRatingStars, index) {
   modalRatingStars.forEach((star, starIndex) => {
     const isStarFilled = starIndex <= index;
@@ -12,51 +38,33 @@ function handleModalStarClick(modalRatingStars, index) {
   });
 }
 
-function resetReviewModal() {
-  const modalRatingStarsContainer =
-    document.getElementById("review-modal-stars");
-  const modalRatingStars = [...modalRatingStarsContainer.children];
-  const modalReviewInput = document.getElementById("review-modal__input");
-
-  modalRatingStars.forEach((starEl) => {
-    starEl.src = unfilledStarIcon;
-  });
-  modalReviewInput.value = "";
-}
-
-async function handleReviewSubmit() {
-  const productArticle = document.querySelector(".product");
-  const modalRatingStarsContainer =
-    document.getElementById("review-modal-stars");
-  const rating =
-    modalRatingStarsContainer.querySelectorAll(".star-filled").length;
-  const review_text = document
+// Saves a new review and adds it to the reviews list.
+async function handleSubmitReview() {
+  const productEl = document.querySelector(".product");
+  const reviewStarsEl = document.getElementById("review-modal-stars");
+  const productId = productEl.id;
+  const rating = reviewStarsEl.querySelectorAll(".star-filled").length;
+  const reviewText = document
     .getElementById("review-modal__input")
     .value.trim();
-  const productReviewsList = productArticle.querySelector(
-    ".product__all-reviews-list"
-  );
-  const product_id = productArticle.id;
 
-  const { data: review, error } = await supabase
-    .from("reviews")
-    .insert([{ product_id, rating, review_text }]);
-  productReviewsList.append(generateProductReviewElement(review[0]));
-  MicroModal.close("review-modal");
+  const review = await addReview(productId, rating, reviewText);
+  addReviewToReviews(review);
+  closeReviewModal();
 }
 
+// Sets up the add review modal.
 function setupReviewModal() {
-  const modalRatingStarsContainer =
-    document.getElementById("review-modal-stars");
-  const submitReviewButton = document.getElementById("review-modal-submit-btn");
-  const modalRatingStars = [...modalRatingStarsContainer.children];
+  const reviewStarsEl = document.getElementById("review-modal-stars");
+  const submitReviewBtn = document.getElementById("review-modal-submit-btn");
+  const reviewStars = [...reviewStarsEl.children];
 
-  modalRatingStars.forEach((starEl, index) => {
+  reviewStars.forEach((starEl, index) => {
     starEl.addEventListener("click", () =>
-      handleModalStarClick(modalRatingStars, index)
+      handleModalStarClick(reviewStars, index)
     );
   });
-  submitReviewButton.addEventListener("click", handleReviewSubmit);
+  submitReviewBtn.addEventListener("click", handleSubmitReview);
 }
 
-export { resetReviewModal, setupReviewModal };
+export { setupReviewModal, showReviewModal };

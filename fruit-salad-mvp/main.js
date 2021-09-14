@@ -1,22 +1,24 @@
 import MicroModal from "micromodal";
-import supabase from "./src/js/client";
-import { showProductRating } from "./src/js/product";
-import { setupReviewModal } from "./src/js/review";
+import { getProducts } from "./src/js/client";
+import { showProduct } from "./src/js/product";
 import "./style.css";
+import "./src/css/product.css";
+import "./src/css/modal.css";
+
 MicroModal.init();
 
-// Fetches an array of all products from the backend.
-async function fetchProducts() {
-  // Get the list of all products from the backend.
-  let { data: products, error } = await supabase.from("products").select("*");
+// Fetches an array of all products from the backend,
+// and shows a randomly selected product from that list.
+async function init() {
+  // Gets the list of all products.
+  const products = await getProducts();
 
   // Choose a random product from the products array
   // and display it's rating.
   if (products) {
     const randomProduct = products[Math.floor(Math.random() * products.length)];
-    showProductRating(randomProduct);
-    setupReviewModal();
+    showProduct(randomProduct);
   }
 }
 
-fetchProducts();
+init();

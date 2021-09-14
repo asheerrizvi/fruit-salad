@@ -43,7 +43,7 @@ hr {
 }
 
 .product {
-  height: 100vh;
+  height: auto;
   width: 580px;
   padding: 0 28px;
 }
