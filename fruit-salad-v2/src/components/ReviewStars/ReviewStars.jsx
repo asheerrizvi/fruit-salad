@@ -6,7 +6,7 @@ function ReviewStars({ rating }) {
   return [...Array(5).keys()].map((starIndex, index) => (
     <img
       key={index}
-      src={starIndex <= rating ? filledStarIcon : unfilledStarIcon}
+      src={starIndex + 1 <= rating ? filledStarIcon : unfilledStarIcon}
       className="star"
       alt="Star"
     />
