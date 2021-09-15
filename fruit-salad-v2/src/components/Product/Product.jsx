@@ -2,19 +2,17 @@ import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import Reviews from "../Reviews/Reviews";
 import ReviewStars from "../ReviewStars/ReviewStars";
+import NewReviewModal from "../NewReviewModal/NewReviewModal";
 
-import { getProducts, getReviews } from "../../client";
+import { addReview, getProducts, getReviews } from "../../client";
 import calculateProductRating from "../../utils/calculateProductRating";
 import "./Product.css";
-import "../../css/modalStyles.css";
-import NewReviewStars from "../NewReviewStars/NewReviewStars";
 
 function Product() {
   const [product, setProduct] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [averageRating, setAverageRating] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [reviewText, setReviewText] = useState("");
 
   useEffect(() => {
     async function getProductsData() {
@@ -47,9 +45,10 @@ function Product() {
     setShowModal(false);
   }
 
-  function handleReviewTextChange(e) {
-    const value = e.target.value.trim();
-    setReviewText(value);
+  async function handleSubmitReview(reviewRating, reviewText) {
+    const review = await addReview(product.id, reviewRating, reviewText);
+    setReviews([...reviews, review]);
+    closeReviewModal();
   }
 
   if (!product) return null;
@@ -80,39 +79,13 @@ function Product() {
         </section>
       </section>
 
-      <ReactModal
-        isOpen={showModal}
-        onRequestClose={closeReviewModal}
-        className="modal__container"
-        overlayClassName="modal__overlay"
-        shouldCloseOnOverlayClick={true}
-      >
-        <header className="modal__header">
-          <h1 id="review-modal-title">What's your rating</h1>
-        </header>
-        <main className="modal__content" id="review-modal-content">
-          <section className="review-modal__section">
-            <span className="review-modal__section-title">Rating</span>
-            <NewReviewStars rating={-1} />
-          </section>
-          <section className="review-modal__section">
-            <span className="review-modal__section-title">Review</span>
-            <input
-              type="text"
-              id="review-modal__input"
-              placeholder="Start typing..."
-              value={reviewText}
-              onChange={handleReviewTextChange}
-            />
-          </section>
-          <button
-            className="button button__normal"
-            id="review-modal-submit-btn"
-          >
-            Submit Review
-          </button>
-        </main>
-      </ReactModal>
+      {showModal && (
+        <NewReviewModal
+          closeReviewModal={closeReviewModal}
+          handleSubmitReview={handleSubmitReview}
+          showModal={showModal}
+        ></NewReviewModal>
+      )}
     </>
   );
 }

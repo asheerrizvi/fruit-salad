@@ -1,0 +1,10 @@
+.star-button {
+  border: none;
+  background: none;
+  height: 30px;
+  width: 30px;
+}
+
+.star-button:focus {
+  outline: none;
+}
