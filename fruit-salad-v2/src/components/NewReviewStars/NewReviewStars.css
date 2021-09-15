@@ -1,10 +1,32 @@
-.star-button {
-  border: none;
-  background: none;
-  height: 30px;
-  width: 30px;
+#review-modal-stars {
+  display: flex;
 }
 
-.star-button:focus {
+.review__star {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  padding: 0 2px;
+}
+
+.review__star-button {
+  position: absolute;
+  border: none;
+  background: none;
+  height: 100%;
+  width: 50%;
+  padding: 0;
+  cursor: pointer;
+}
+
+.review__star-button:focus {
   outline: none;
+}
+
+.review__star-half {
+  left: 0;
+}
+
+.review__star-full {
+  right: 0;
 }

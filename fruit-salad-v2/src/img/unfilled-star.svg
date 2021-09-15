@@ -1,1 +1,13 @@
-<svg width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_i)"><path fill-rule="evenodd" clip-rule="evenodd" d="M29.895 11.321c-.235-.674-.806-1.171-1.509-1.274l-8.07-1.245-3.602-7.733C16.377.44 15.732 0 15 0s-1.377.44-1.713 1.07L9.684 8.801 1.57 10.047c-.66.102-1.23.6-1.465 1.274a1.81 1.81 0 00.44 1.904l5.887 6.02-1.406 8.567c-.102.703.205 1.406.762 1.846.337.234.703.336 1.113.336.293 0 .6-.073.908-.234L15 25.776l7.191 3.984c.308.161.615.234.908.234.41 0 .776-.102 1.113-.336.557-.44.864-1.143.762-1.846l-1.406-8.568 5.887-6.019a1.81 1.81 0 00.44-1.904z" fill="#E0E0E0"/></g><defs><filter id="filter0_i" x="0" y="0" width="30" height="29.994" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="-1"/><feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/><feBlend in2="shape" result="effect1_innerShadow"/></filter></defs></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1080 1080" style="enable-background:new 0 0 1080 1080;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFD469;}
+	.st1{fill:#FFFFFF;}
+</style>
+<polygon class="st0" points="540,0 674,414.7 1080,462.5 756.7,694.3 861.2,1080 540,867.1 218.8,1080 323.3,694.3 0,462.5 
+	406,414.7 "/>
+<polygon class="st1" points="540,108.2 650.6,450.5 985.8,490 718.9,681.4 805.1,999.8 540,824 274.9,999.8 361.1,681.4 94.2,490 
+	429.4,450.5 "/>
+</svg>

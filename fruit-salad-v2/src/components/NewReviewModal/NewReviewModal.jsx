@@ -7,7 +7,7 @@ function NewReviewModal({ closeReviewModal, handleSubmitReview, showModal }) {
   const [reviewRating, setReviewRating] = useState(-1);
   const [reviewText, setReviewText] = useState("");
 
-  function handleStarClick(e, starIndex) {
+  function handleReviewRatingChange(e, starIndex) {
     setReviewRating(starIndex);
   }
 
@@ -29,10 +29,7 @@ function NewReviewModal({ closeReviewModal, handleSubmitReview, showModal }) {
       <main className="modal__content" id="review-modal-content">
         <section className="review-modal__section">
           <span className="review-modal__section-title">Rating</span>
-          <NewReviewStars
-            handleStarClick={handleStarClick}
-            rating={reviewRating}
-          />
+          <NewReviewStars handleReviewRatingChange={handleReviewRatingChange} />
         </section>
         <section className="review-modal__section">
           <span className="review-modal__section-title">Review</span>
