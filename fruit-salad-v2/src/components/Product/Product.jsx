@@ -7,6 +7,10 @@ import NewReviewModal from "../NewReviewModal/NewReviewModal";
 import { addReview, getProducts, getReviews } from "../../client";
 import calculateProductRating from "../../utils/calculateProductRating";
 import "./Product.css";
+import {
+  subscribeReviews,
+  unsubscribeReviews,
+} from "../../../../fruit-salad-mvp/src/js/client";
 
 function Product() {
   const [product, setProduct] = useState(null);
@@ -15,6 +19,10 @@ function Product() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    let reviewsSubscription = null;
+    function handleReviewEvent(updatedReviews) {
+      setReviews(updatedReviews);
+    }
     async function getProductsData() {
       // Gets the list of all products.
       const products = await getProducts();
@@ -26,6 +34,11 @@ function Product() {
           products[Math.floor(Math.random() * products.length)];
         const productReviews = await getReviews(randomProduct.id);
         const { avgRating } = calculateProductRating(productReviews);
+        reviewsSubscription = subscribeReviews(
+          randomProduct.id,
+          productReviews,
+          handleReviewEvent
+        );
 
         setProduct(randomProduct);
         setReviews(productReviews);
@@ -34,7 +47,12 @@ function Product() {
     }
 
     getProductsData();
+    return () => unsubscribeReviews(reviewsSubscription);
   }, []);
+
+  function addNewReview(newReview) {
+    setReviews([...reviews, newReview]);
+  }
 
   function showReviewModal() {
     ReactModal.setAppElement("#root");
@@ -47,7 +65,7 @@ function Product() {
 
   async function handleSubmitReview(reviewRating, reviewText) {
     const review = await addReview(product.id, reviewRating, reviewText);
-    setReviews([...reviews, review]);
+    addNewReview(review);
     closeReviewModal();
   }
 
