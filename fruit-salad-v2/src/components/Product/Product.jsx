@@ -7,10 +7,7 @@ import NewReviewModal from "../NewReviewModal/NewReviewModal";
 import { addReview, getProducts, getReviews } from "../../client";
 import calculateProductRating from "../../utils/calculateProductRating";
 import "./Product.css";
-import {
-  subscribeReviews,
-  unsubscribeReviews,
-} from "../../../../fruit-salad-mvp/src/js/client";
+import { subscribeReviews, unsubscribeReviews } from "../../client";
 
 function Product() {
   const [product, setProduct] = useState(null);

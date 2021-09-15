@@ -30,4 +30,24 @@ async function addReview(productId, reviewRating, reviewText) {
   return review[0];
 }
 
-export { getProducts, getReviews, addReview };
+function subscribeReviews(productId, reviews, handleReviewEvent) {
+  return supabase
+    .from(`reviews:product_id=eq.${productId}`)
+    .on("*", (payload) => {
+      const newReview = payload.new;
+      handleReviewEvent([...reviews, newReview]);
+    })
+    .subscribe();
+}
+
+function unsubscribeReviews(reviewsSubscription) {
+  supabase.removeSubscription(reviewsSubscription);
+}
+
+export {
+  getProducts,
+  getReviews,
+  addReview,
+  subscribeReviews,
+  unsubscribeReviews,
+};
