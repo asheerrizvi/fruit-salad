@@ -4,51 +4,69 @@ import Reviews from "../Reviews/Reviews";
 import ReviewStars from "../ReviewStars/ReviewStars";
 import NewReviewModal from "../NewReviewModal/NewReviewModal";
 
-import { addReview, getProducts, getReviews } from "../../client";
+import { supabase, addReview, getProducts, getReviews } from "../../client";
 import calculateProductRating from "../../utils/calculateProductRating";
 import "./Product.css";
-import { subscribeReviews, unsubscribeReviews } from "../../client";
 
 function Product() {
+  let reviewsSubscription = null;
   const [product, setProduct] = useState(null);
-  const [reviews, setReviews] = useState([]);
-  const [averageRating, setAverageRating] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-
+  const [reviews, setReviews] = useState(null);
   useEffect(() => {
-    let reviewsSubscription = null;
-    function handleReviewEvent(updatedReviews) {
-      setReviews(updatedReviews);
-    }
+    setupReviewsSubscription();
+
     async function getProductsData() {
       // Gets the list of all products.
       const products = await getProducts();
+      const productObj = products[0];
+      // const productObj =
+      //   products[Math.floor(Math.random() * products.length)];
 
-      // Choose a random product from the products array
-      // and display it's rating.
-      if (products) {
-        const randomProduct =
-          products[Math.floor(Math.random() * products.length)];
-        const productReviews = await getReviews(randomProduct.id);
-        const { avgRating } = calculateProductRating(productReviews);
-        reviewsSubscription = subscribeReviews(
-          randomProduct.id,
-          productReviews,
-          handleReviewEvent
-        );
-
-        setProduct(randomProduct);
-        setReviews(productReviews);
-        setAverageRating(avgRating);
-      }
+      await getInitialReviews(productObj.id);
+      setProduct(productObj);
     }
 
     getProductsData();
-    return () => unsubscribeReviews(reviewsSubscription);
+
+    return () => {
+      supabase.removeSubscription(reviewsSubscription);
+    };
   }, []);
 
-  function addNewReview(newReview) {
-    setReviews([...reviews, newReview]);
+  const [averageRating, setAverageRating] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  function handleReviewEvent(newReview) {
+    setReviews((prevReviews) => {
+      const isNewReviewPresent = prevReviews.find(
+        (review) => review.id === newReview.id
+      );
+
+      return isNewReviewPresent ? prevReviews : [newReview, ...prevReviews];
+    });
+  }
+
+  async function setupReviewsSubscription() {
+    if (!reviewsSubscription) {
+      reviewsSubscription = supabase
+        .from("reviews")
+        .on("INSERT", (payload) => {
+          handleReviewEvent(payload.new);
+        })
+        .subscribe();
+    }
+  }
+
+  async function getInitialReviews(productId) {
+    const productReviews = await getReviews(productId);
+    const { avgRating } = calculateProductRating(productReviews);
+
+    setReviews(productReviews);
+    setAverageRating(avgRating || 0.0);
+  }
+
+  function updateReviews(updatedReviews) {
+    setReviews(updatedReviews);
   }
 
   function showReviewModal() {
@@ -62,11 +80,11 @@ function Product() {
 
   async function handleSubmitReview(reviewRating, reviewText) {
     const review = await addReview(product.id, reviewRating, reviewText);
-    addNewReview(review);
+    updateReviews([review, ...reviews]);
     closeReviewModal();
   }
 
-  if (!product) return null;
+  if (!product || !reviews) return "Loading...";
   return (
     <>
       <section className="product">
@@ -76,7 +94,7 @@ function Product() {
             <span className="product__average-rating">{averageRating}</span>
             <article className="product__add-new-review">
               <div className="product__average-stars">
-                <ReviewStars rating={Math.round(averageRating)}></ReviewStars>
+                <ReviewStars rating={averageRating}></ReviewStars>
               </div>
               <button
                 id="new-review-button"

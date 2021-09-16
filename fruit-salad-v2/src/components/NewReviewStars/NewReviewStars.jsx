@@ -44,6 +44,7 @@ function NewReviewStars({ handleReviewRatingChange }) {
   function handleHalfStarClick(index) {
     const updatedRating = index + 0.5;
     setRating(updatedRating);
+    handleReviewRatingChange(updatedRating);
   }
 
   function handleHalfStarMouseOver(index) {
@@ -62,6 +63,7 @@ function NewReviewStars({ handleReviewRatingChange }) {
   function handleFullStarClick(index) {
     const updatedRating = index + 1;
     setRating(updatedRating);
+    handleReviewRatingChange(updatedRating);
   }
 
   function handleFullStarMouseOver(index) {

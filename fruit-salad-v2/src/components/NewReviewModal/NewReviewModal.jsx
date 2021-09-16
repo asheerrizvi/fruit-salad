@@ -4,11 +4,11 @@ import NewReviewStars from "../NewReviewStars/NewReviewStars";
 import "./NewReviewModal.css";
 
 function NewReviewModal({ closeReviewModal, handleSubmitReview, showModal }) {
-  const [reviewRating, setReviewRating] = useState(-1);
+  const [reviewRating, setReviewRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
 
-  function handleReviewRatingChange(e, starIndex) {
-    setReviewRating(starIndex);
+  function handleReviewRatingChange(newRating) {
+    setReviewRating(newRating);
   }
 
   function handleReviewTextChange(e) {

@@ -1,16 +1,17 @@
 import React from "react";
-import filledStarIcon from "../../img/filled-star.svg";
-import unfilledStarIcon from "../../img/unfilled-star.svg";
+import getStarIcon from "../../utils/getStarIcon";
 
 function ReviewStars({ rating }) {
-  return [...Array(5).keys()].map((starIndex, index) => (
-    <img
-      key={index}
-      src={starIndex + 1 <= rating ? filledStarIcon : unfilledStarIcon}
-      className="star"
-      alt="Star"
-    />
-  ));
+  return [...Array(5).keys()].map((starIndex, index) => {
+    return (
+      <img
+        key={index}
+        src={getStarIcon(starIndex, rating)}
+        className="star"
+        alt="Star"
+      />
+    );
+  });
 }
 
 export default ReviewStars;

@@ -16,7 +16,8 @@ async function getReviews(productId) {
   const { data: reviews, error } = await supabase
     .from("reviews")
     .select("id, rating, review_text")
-    .eq("product_id", productId);
+    .eq("product_id", productId)
+    .order("id", { ascending: false });
   return reviews;
 }
 
@@ -30,24 +31,4 @@ async function addReview(productId, reviewRating, reviewText) {
   return review[0];
 }
 
-function subscribeReviews(productId, reviews, handleReviewEvent) {
-  return supabase
-    .from(`reviews:product_id=eq.${productId}`)
-    .on("*", (payload) => {
-      const newReview = payload.new;
-      handleReviewEvent([...reviews, newReview]);
-    })
-    .subscribe();
-}
-
-function unsubscribeReviews(reviewsSubscription) {
-  supabase.removeSubscription(reviewsSubscription);
-}
-
-export {
-  getProducts,
-  getReviews,
-  addReview,
-  subscribeReviews,
-  unsubscribeReviews,
-};
+export { supabase, getProducts, getReviews, addReview };
