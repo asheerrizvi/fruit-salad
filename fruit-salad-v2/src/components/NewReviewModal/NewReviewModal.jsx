@@ -3,14 +3,18 @@ import ReactModal from "react-modal";
 import NewReviewStars from "../NewReviewStars/NewReviewStars";
 import "./NewReviewModal.css";
 
+// A component for adding a new review to a particular product.
 function NewReviewModal({ closeReviewModal, handleSubmitReview, showModal }) {
+  // State variables for new review rating and text.
   const [reviewRating, setReviewRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
 
+  // Handles the change of rating through the new review modal.
   function handleReviewRatingChange(newRating) {
     setReviewRating(newRating);
   }
 
+  // Handles the change of text through the new review modal.
   function handleReviewTextChange(e) {
     setReviewText(e.target.value);
   }

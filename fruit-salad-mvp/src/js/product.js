@@ -21,7 +21,10 @@ function showAvgProductRating(roundedAvgRating) {
 // Adds a single review to reviews list.
 function addReviewToReviews(review) {
   const reviewsListEl = document.querySelector(".product__all-reviews-list");
-  reviewsListEl.append(generateProductReviewElement(review));
+  reviewsListEl.insertBefore(
+    generateProductReviewElement(review),
+    reviewsListEl.firstChild
+  );
 }
 
 // Shows a list of all product reviews.

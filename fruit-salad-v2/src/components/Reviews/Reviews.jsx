@@ -1,6 +1,8 @@
 import React from "react";
 import ReviewStars from "../ReviewStars/ReviewStars";
 
+// Component which renders a list of all reviews
+// for a particular product.
 function Reviews({ reviews }) {
   return (
     <ul className="product__all-reviews-list">

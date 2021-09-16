@@ -9,12 +9,20 @@ import calculateProductRating from "../../utils/calculateProductRating";
 import "./Product.css";
 
 function Product() {
+  // Setup variables and state variables for subscription
+  // product and reviews.
   let reviewsSubscription = null;
   const [product, setProduct] = useState(null);
   const [reviews, setReviews] = useState(null);
+
+  // This effect fetches the list of products and
+  // chooses a random product from that list,
+  // it then fetches the reviews for that product
+  // and sets up a subscription for new review event.
   useEffect(() => {
     async function getProductsData() {
       // Gets the list of all products.
+      // and choose a random product from that list.
       const products = await getProducts();
       const productObj = products[Math.floor(Math.random() * products.length)];
 
@@ -25,13 +33,19 @@ function Product() {
 
     getProductsData();
 
+    // Removes new review subscription on unmount.
     return () => {
       supabase.removeSubscription(reviewsSubscription);
     };
   }, []);
 
+  // State variables for average product rating and
+  // new review modal visibility state.
   const [averageRating, setAverageRating] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+  // This hooks runs when reviews change and re-calculates
+  // the average rating for the product.
   useEffect(() => {
     if (reviews) {
       const { avgRating } = calculateProductRating(reviews);
@@ -39,6 +53,9 @@ function Product() {
     }
   }, [reviews]);
 
+  // Handles a new review event, checks to see if the new review
+  // is already present in state. If not updates the state
+  // with the new review.
   function handleReviewEvent(newReview) {
     setReviews((prevReviews) => {
       const isNewReviewPresent = prevReviews.find(
@@ -49,6 +66,7 @@ function Product() {
     });
   }
 
+  // Sets up reviews subscription for a particular product.
   async function setupReviewsSubscription(productId) {
     if (!reviewsSubscription) {
       reviewsSubscription = supabase
@@ -60,24 +78,30 @@ function Product() {
     }
   }
 
+  // Gets the reviews associated with a particular product.
   async function getInitialReviews(productId) {
     const productReviews = await getReviews(productId);
     setReviews(productReviews);
   }
 
+  // Updates the reviews state with updated reviews.
   function updateReviews(updatedReviews) {
     setReviews(updatedReviews);
   }
 
+  // Shows add new review modal.
   function showReviewModal() {
     ReactModal.setAppElement("#root");
     setShowModal(true);
   }
 
+  // Hides add new review modal.
   function closeReviewModal() {
     setShowModal(false);
   }
 
+  // Saves a new review to the list of product reviews,
+  // and updates the local state.
   async function handleSubmitReview(reviewRating, reviewText) {
     const review = await addReview(product.id, reviewRating, reviewText);
     updateReviews([review, ...reviews]);

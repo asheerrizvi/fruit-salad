@@ -16,7 +16,8 @@ async function getReviews(productId) {
   const { data: reviews, error } = await supabase
     .from("reviews")
     .select("id, rating, review_text")
-    .eq("product_id", productId);
+    .eq("product_id", productId)
+    .order("id", { ascending: false });
   return reviews;
 }
 

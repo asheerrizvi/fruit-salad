@@ -1,7 +1,8 @@
 import React from "react";
 import getStarIcon from "../../utils/getStarIcon";
 
-function ReviewStars({ handleClick, rating }) {
+// Component for rendering a list of stars denoting a review rating.
+function ReviewStars({ rating }) {
   return [...Array(5).keys()].map((starIndex, index) => {
     return (
       <img
