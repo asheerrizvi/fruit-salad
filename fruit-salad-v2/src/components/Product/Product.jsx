@@ -13,16 +13,13 @@ function Product() {
   const [product, setProduct] = useState(null);
   const [reviews, setReviews] = useState(null);
   useEffect(() => {
-    setupReviewsSubscription();
-
     async function getProductsData() {
       // Gets the list of all products.
       const products = await getProducts();
-      const productObj = products[0];
-      // const productObj =
-      //   products[Math.floor(Math.random() * products.length)];
+      const productObj = products[Math.floor(Math.random() * products.length)];
 
       await getInitialReviews(productObj.id);
+      setupReviewsSubscription(productObj.id);
       setProduct(productObj);
     }
 
@@ -35,6 +32,12 @@ function Product() {
 
   const [averageRating, setAverageRating] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  useEffect(() => {
+    if (reviews) {
+      const { avgRating } = calculateProductRating(reviews);
+      setAverageRating(avgRating || 0.0);
+    }
+  }, [reviews]);
 
   function handleReviewEvent(newReview) {
     setReviews((prevReviews) => {
@@ -46,10 +49,10 @@ function Product() {
     });
   }
 
-  async function setupReviewsSubscription() {
+  async function setupReviewsSubscription(productId) {
     if (!reviewsSubscription) {
       reviewsSubscription = supabase
-        .from("reviews")
+        .from(`reviews:product_id=eq.${productId}`)
         .on("INSERT", (payload) => {
           handleReviewEvent(payload.new);
         })
@@ -59,10 +62,7 @@ function Product() {
 
   async function getInitialReviews(productId) {
     const productReviews = await getReviews(productId);
-    const { avgRating } = calculateProductRating(productReviews);
-
     setReviews(productReviews);
-    setAverageRating(avgRating || 0.0);
   }
 
   function updateReviews(updatedReviews) {
