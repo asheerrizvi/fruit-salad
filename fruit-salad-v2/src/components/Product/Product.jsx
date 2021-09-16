@@ -118,7 +118,7 @@ function Product() {
             <span className="product__average-rating">{averageRating}</span>
             <article className="product__add-new-review">
               <div className="product__average-stars">
-                <ReviewStars rating={averageRating}></ReviewStars>
+                <ReviewStars rating={averageRating} />
               </div>
               <button
                 id="new-review-button"
@@ -132,7 +132,7 @@ function Product() {
         </header>
         <section className="product__all-reviews">
           <h2>Reviews</h2>
-          <Reviews reviews={reviews}></Reviews>
+          <Reviews reviews={reviews} />
         </section>
       </section>
 
@@ -141,7 +141,7 @@ function Product() {
           closeReviewModal={closeReviewModal}
           handleSubmitReview={handleSubmitReview}
           showModal={showModal}
-        ></NewReviewModal>
+        />
       )}
     </>
   );

@@ -10,7 +10,7 @@ function Reviews({ reviews }) {
         return (
           <li key={review.id} className="product__all-reviews-list-item">
             <div className="list-item-stars">
-              <ReviewStars rating={review.rating}></ReviewStars>
+              <ReviewStars rating={review.rating} />
             </div>
             <span className="list-item-rating">{review.rating},</span>
             <span className="list-item-text">{review.review_text}</span>
